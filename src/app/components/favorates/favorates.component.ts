@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './favorates.component.css'
 })
 export class FavoratesComponent {
-
+  favoriteRecipesList = [1 , 2 , 3 , 4 , 5 , 6 , 7 , 8];
 }
