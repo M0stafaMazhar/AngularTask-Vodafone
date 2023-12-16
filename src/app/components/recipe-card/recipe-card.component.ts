@@ -12,7 +12,6 @@ export class RecipeCardComponent {
   constructor(private favoritesService: FavoritesService){}
 
   toggleFavorite(){
-    this.favoritesService.toggleFavorite(this.recipe)
-    this.favoritesService.updateFavorites.emit();    
+    this.favoritesService.toggleFavorite(this.recipe);   
   }
 }

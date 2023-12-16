@@ -6,7 +6,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class FavoritesService {
   favoriteRecipes;
 
-  updateFavorites = new EventEmitter<void>;
+  updateFavorites = new EventEmitter<any>;
 
   constructor(){
     this.favoriteRecipes = JSON.parse(localStorage.getItem("favoriteRecipes"));
@@ -30,7 +30,7 @@ export class FavoritesService {
 
   removeFromFavorites(recipeId){
     this.favoriteRecipes = this.favoriteRecipes.filter(recipe => +recipe.id !== +recipeId);
-    return this.favoriteRecipes;
+    this.updateFavorites.emit([...this.favoriteRecipes])
   }
 
   toggleFavorite(recipe){ 

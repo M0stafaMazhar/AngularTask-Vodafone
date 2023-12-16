@@ -15,8 +15,8 @@ export class FavoratesComponent implements OnInit{
   ngOnInit(): void {
     this.favoriteRecipesList = this.favoritesService.getFavorites(); 
     
-    this.favoritesService.updateFavorites.subscribe(() => {
-      this.favoriteRecipesList = this.favoritesService.getFavorites();     
+    this.favoritesService.updateFavorites.subscribe((updatedList) => {
+      this.favoriteRecipesList = updatedList;     
     })
   }
 
