@@ -1,9 +1,14 @@
     <div class="card rounded-0">
-        <img src="{{recipe.image}}" class="card-img-top" alt="...">
+        
+            <button class="btn rounded-circle btn-outline-danger position-absolute top-0 end-0 m-2 shadow">
+                <i class="bi bi-star-fill"></i>
+            </button>
+            <img src={{recipe.image}} alt="{{recipe.title}}" class="img-fluid rounded-0">
+        
         <div class="card-body">
             <h5 class="card-title text-danger">{{recipe.title}}</h5>
             <p class="card-text">{{recipe.summary.slice(0,150)}}...</p>
-            <a href="#" class="btn btn-outline-danger">Go somewhere</a>
+            <a href="#" class="btn btn-outline-danger">Details</a>
         </div>
         <hr>
         <div class="text-center text-danger row">

@@ -1,1 +1,32 @@
-<p>recipe-details works!</p>
+<div class="row p-2">
+    <div class="card col-sm-12 rounded-0">
+        <div class="row">
+            <div class="col-sm-12 col-lg-4 p-2">
+                <div class="col-12  position-relative">
+                    <button class="btn rounded-circle btn-outline-danger position-absolute top-0 end-0 m-2 shadow">
+                        <i class="bi bi-star-fill"></i>
+                    </button>
+                    <img src={{recipe.image}} alt="{{recipe.title}}" class="img-fluid rounded-0">
+                </div>
+            </div>
+            <div class="card-body col-sm-12 col-lg-8">
+                    <h5 class="card-title text-danger">{{recipe.title}}</h5>
+                <p class="card-text">
+                    {{recipe.summary}}
+                </p>
+                <h6>Ingredients:</h6>
+                <span class="badge text-bg-danger m-1" *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.nameClean}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row p-2">
+        <div class="col-12 card rounded-0">
+            <div class="card-body">
+                <h5 class="card-title text-danger">
+                    Instructions:
+                </h5>
+                {{recipe.instructions}}
+            </div>
+        </div>
+</div>
