@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -8,4 +9,10 @@ import { Component, Input } from '@angular/core';
 export class RecipeCardComponent {
   @Input() recipe;
 
+  constructor(private favoritesService: FavoritesService){}
+
+  toggleFavorite(){
+    this.favoritesService.toggleFavorite(this.recipe)
+    this.favoritesService.updateFavorites.emit();    
+  }
 }

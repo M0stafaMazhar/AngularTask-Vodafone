@@ -11,22 +11,17 @@
             </div>
             <div class="card-body col-sm-12 col-lg-8">
                     <h5 class="card-title text-danger">{{recipe.title}}</h5>
-                <p class="card-text">
-                    {{recipe.summary}}
-                </p>
+                <p class="card-text" [innerHTML]="recipe.summary"></p>
                 <h6>Ingredients:</h6>
                 <span class="badge text-bg-danger m-1" *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.nameClean}}</span>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row p-2">
-        <div class="col-12 card rounded-0">
+            <hr class="hr hr-blurry" />
             <div class="card-body">
                 <h5 class="card-title text-danger">
                     Instructions:
                 </h5>
-                {{recipe.instructions}}
+                <div [innerHTML]="recipe.instructions"></div>
             </div>
         </div>
+    </div>
 </div>
