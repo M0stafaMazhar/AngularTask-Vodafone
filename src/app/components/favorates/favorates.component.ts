@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../services/favorites.service';
 import { RecipeInterface } from '../../interfaces/recipe-interface';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-favorates',
@@ -9,15 +10,22 @@ import { RecipeInterface } from '../../interfaces/recipe-interface';
 })
 export class FavoratesComponent implements OnInit{
   favoriteRecipesList: RecipeInterface[];
+  displayList: RecipeInterface[];
 
-  constructor(private favoritesService: FavoritesService){
+  constructor(private favoritesService: FavoritesService , private searchService: SearchService){
   }
 
   ngOnInit(): void {
     this.favoriteRecipesList = this.favoritesService.getFavorites(); 
-    
+    this.displayList = [...this.favoriteRecipesList];
+
     this.favoritesService.updateFavorites.subscribe((updatedList) => {
       this.favoriteRecipesList = updatedList;     
+      this.displayList = [...this.favoriteRecipesList];
+    })
+
+    this.searchService.searchEvent.subscribe(searchQuery => {
+      this.displayList = this.favoriteRecipesList.filter(recipe => recipe.title.toLowerCase().includes(searchQuery))
     })
     
   }

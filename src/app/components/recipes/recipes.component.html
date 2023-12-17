@@ -1,11 +1,18 @@
-<div class="text-center m-5" *ngIf="!recipesList.length">
-    <h2>Sorry!! No recipes right now, pleas check again later...</h2>
+<div class="row justify-content-center m-5" *ngIf="!loadingFlag && errorFlag">
+    <div class="alert alert-danger col-sm-12 col-lg-4 text-center">
+        <h5>Ops an Error ocured, Please try Again later.</h5>
+        <button class="btn btn-outline-danger">Reload</button>
+    </div>
 </div>
-<div class="text-center" *ngIf="loadingFlag">
-    <img src="https://i.pinimg.com/originals/ee/1d/08/ee1d081c5bdf966b058c1a6588e73e8a.gif" alt="">
+
+<div class="text-center m-5" *ngIf="!displayList.length && !loadingFlag && !errorFlag">
+    <h2 class="text-danger">Sorry, No recipes match your search...</h2>
 </div>
-<div class="row" *ngIf="recipesList.length">
-    <div class="col-sm-12 col-md-6 col-lg-4 p-2" *ngFor="let recipe of recipesList">
+<div class="text-center" *ngIf="loadingFlag && !errorFlag">
+    <img src="https://i.pinimg.com/originals/ee/1d/08/ee1d081c5bdf966b058c1a6588e73e8a.gif" alt="Loading...">
+</div>
+<div class="row" *ngIf="displayList">
+    <div class="col-sm-12 col-md-6 col-lg-4 p-2" *ngFor="let recipe of displayList">
         <app-recipe-card [recipe]="recipe"></app-recipe-card>
     </div>
 </div>

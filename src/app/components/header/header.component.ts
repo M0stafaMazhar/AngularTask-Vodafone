@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(private searchService: SearchService){}
+
+  searchQuery: string;
+  onSearch(){
+    this.searchService.searchEvent.next(this.searchQuery.toLowerCase())  
+  }
 }

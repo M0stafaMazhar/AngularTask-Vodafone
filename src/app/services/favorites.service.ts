@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { RecipeInterface } from '../interfaces/recipe-interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { RecipeInterface } from '../interfaces/recipe-interface';
 export class FavoritesService {
   favoriteRecipes: RecipeInterface[];
 
-  updateFavorites = new EventEmitter<any>;
+  updateFavorites = new Subject<RecipeInterface[]>;
 
   constructor(){
     this.favoriteRecipes = JSON.parse(localStorage.getItem("favoriteRecipes"));
@@ -31,7 +32,7 @@ export class FavoritesService {
 
   removeFromFavorites(recipeId : number){
     this.favoriteRecipes = this.favoriteRecipes.filter(recipe => recipe.id !== recipeId);
-    this.updateFavorites.emit([...this.favoriteRecipes])
+    this.updateFavorites.next([...this.favoriteRecipes])
   }
 
   toggleFavorite(recipe: RecipeInterface){ 

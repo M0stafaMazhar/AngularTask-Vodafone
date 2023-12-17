@@ -1,11 +1,11 @@
-    <div class="card rounded-0" [routerLink]="'/recipe/' + recipe.id">
+    <div class="card rounded-0">
             <button (click)="toggleFavorite()" 
             class="btn rounded-circle btn-outline-danger position-absolute top-0 end-0 m-2 shadow"
             [ngClass]="{'btn-danger text-light': recipe.isFavorite}">
                 <i class="bi bi-star-fill"></i>
             </button>
             <img src={{recipe.image}} alt="{{recipe.title}}" class="img-fluid rounded-0">
-        <div class="card-body">
+        <div class="card-body" [routerLink]="'/recipe/' + recipe.id">
             <h5 class="card-title text-danger">{{recipe.title}}</h5>
             <p class="card-text" [innerHTML]="recipe.description.slice(0,200) + '...'"></p>
         </div>

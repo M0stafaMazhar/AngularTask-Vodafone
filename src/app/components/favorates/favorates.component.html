@@ -1,13 +1,13 @@
-<div class="row justify-content-center p-2" *ngIf="!favoriteRecipesList.length">
+<div class="row justify-content-center p-2" *ngIf="!displayList.length">
     <div class="card col-sm-12 col-lg-4 text-center">
         <div class="card-body">
-            <h4 class="card-title text-danger">No Favorites?</h4>
+            <h4 class="card-title text-danger">Can't find what you want?</h4>
             <button routerLink="/recipes" class="btn btn-outline-danger">Explore Recipes Now!</button>
         </div>
     </div>
 </div>
-<div class="row" *ngIf="favoriteRecipesList">
-    <div class="col-xs-12 col-sm-6 col-lg-4 p-2" *ngFor="let recipe of favoriteRecipesList">
+<div class="row" *ngIf="displayList">
+    <div class="col-xs-12 col-sm-6 col-lg-4 p-2" *ngFor="let recipe of displayList">
         <app-recipe-card [recipe]="recipe"></app-recipe-card>
     </div>
 </div>

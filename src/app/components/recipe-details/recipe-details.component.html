@@ -1,4 +1,13 @@
-<div class="row p-2">
+<div class="row justify-content-center m-5" *ngIf="!loadingFlag && errorFlag">
+    <div class="alert alert-danger col-sm-12 col-lg-4 text-center">
+        <h5>Ops an Error ocured, Please try Again later.</h5>
+        <button class="btn btn-outline-danger">Home Page</button>
+    </div>
+</div>
+<div class="text-center" *ngIf="!loadingFlag && !errorFlag">
+    <img src="https://i.pinimg.com/originals/ee/1d/08/ee1d081c5bdf966b058c1a6588e73e8a.gif" alt="Loading...">
+</div>
+<div class="row p-2" *ngIf="recipe">
     <div class="card col-sm-12 rounded-0">
         <div class="row">
             <div class="col-sm-12 col-lg-4 p-2">
@@ -11,9 +20,9 @@
             </div>
             <div class="card-body col-sm-12 col-lg-8">
                     <h5 class="card-title text-danger">{{recipe.title}}</h5>
-                <p class="card-text" [innerHTML]="recipe.summary"></p>
+                <p class="card-text" [innerHTML]="recipe.description"></p>
                 <h6>Ingredients:</h6>
-                <span class="badge text-bg-danger m-1" *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.nameClean}}</span>
+                <span class="badge text-bg-danger m-1" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}}</span>
             </div>
             <hr class="hr hr-blurry" />
             <div class="card-body">
