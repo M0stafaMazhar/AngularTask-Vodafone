@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FavoritesService } from '../../services/favorites.service';
+import { RecipeInterface } from '../../interfaces/recipe-interface';
 
 @Component({
   selector: 'app-recipe-card',
@@ -7,7 +8,7 @@ import { FavoritesService } from '../../services/favorites.service';
   styleUrl: './recipe-card.component.css'
 })
 export class RecipeCardComponent {
-  @Input() recipe;
+  @Input() recipe:RecipeInterface;
 
   constructor(private favoritesService: FavoritesService){}
 

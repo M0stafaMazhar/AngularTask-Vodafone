@@ -1,26 +1,27 @@
-    <div class="card rounded-0">
-            <button (click)="toggleFavorite()" class="btn rounded-circle btn-outline-danger position-absolute top-0 end-0 m-2 shadow">
+    <div class="card rounded-0" [routerLink]="'/recipe/' + recipe.id">
+            <button (click)="toggleFavorite()" 
+            class="btn rounded-circle btn-outline-danger position-absolute top-0 end-0 m-2 shadow"
+            [ngClass]="{'btn-danger text-light': recipe.isFavorite}">
                 <i class="bi bi-star-fill"></i>
             </button>
             <img src={{recipe.image}} alt="{{recipe.title}}" class="img-fluid rounded-0">
         <div class="card-body">
             <h5 class="card-title text-danger">{{recipe.title}}</h5>
-            <p class="card-text" [innerHTML]="recipe.summary.slice(0,150)"></p>
-            <a href="#" class="btn btn-outline-danger">Details</a>
+            <p class="card-text" [innerHTML]="recipe.description.slice(0,200) + '...'"></p>
         </div>
         <hr class="hr hr-blurry" />
         <div class="text-center text-danger row">
             <div class="col-4">
                 <p>
                     <i class="bi-alarm"></i> 
-                    {{recipe.readyInMinutes}} mins
+                    {{recipe.readyTime}} mins
                 </p>
             </div>
 
             <div class="col-4">
                 <p>
                     <i class="bi bi-heart-fill"></i> 
-                    {{recipe.aggregateLikes}}
+                    {{recipe.likes}}
                 </p>
             </div>
 

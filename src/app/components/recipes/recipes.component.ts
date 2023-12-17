@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesService } from '../../services/recipes.service';
+import { RecipeInterface } from '../../interfaces/recipe-interface';
 
 @Component({
   selector: 'app-recipes',
@@ -7,14 +8,20 @@ import { RecipesService } from '../../services/recipes.service';
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent implements OnInit{
- recipesList;
+ recipesList: RecipeInterface[];
  loadingFlag = false;
 
  constructor(private recipesService: RecipesService){}
 
  ngOnInit() {
-    this.recipesList = this.recipesService.getRecipesData();
-    console.log(this.recipesService.getRecipesData());
+    this.loadingFlag = true;
+    this.recipesService.getRecipesData().subscribe(
+        (recipes)=> {this.recipesList = recipes} ,
+        (error)=>{},
+        ()=>{
+          this.loadingFlag = false;
+        }
+    )
     
  }
 

@@ -1,4 +1,5 @@
 export interface RecipeInterface {
+    id: number;
     title: string;
     description: string;
     likes: number;
@@ -6,6 +7,6 @@ export interface RecipeInterface {
     pricePerServing: number;
     instructions: string;
     image: string;
-    ingredients: string[]
+    ingredients: [{name: string}]
     isFavorite: boolean;
 }

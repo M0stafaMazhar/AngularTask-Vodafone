@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../services/favorites.service';
+import { RecipeInterface } from '../../interfaces/recipe-interface';
 
 @Component({
   selector: 'app-favorates',
@@ -7,7 +8,7 @@ import { FavoritesService } from '../../services/favorites.service';
   styleUrl: './favorates.component.css'
 })
 export class FavoratesComponent implements OnInit{
-  favoriteRecipesList;
+  favoriteRecipesList: RecipeInterface[];
 
   constructor(private favoritesService: FavoritesService){
   }
@@ -18,6 +19,7 @@ export class FavoratesComponent implements OnInit{
     this.favoritesService.updateFavorites.subscribe((updatedList) => {
       this.favoriteRecipesList = updatedList;     
     })
+    
   }
 
 }

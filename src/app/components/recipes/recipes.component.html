@@ -1,7 +1,10 @@
+<div class="text-center m-5" *ngIf="!recipesList.length">
+    <h2>Sorry!! No recipes right now, pleas check again later...</h2>
+</div>
 <div class="text-center" *ngIf="loadingFlag">
     <img src="https://i.pinimg.com/originals/ee/1d/08/ee1d081c5bdf966b058c1a6588e73e8a.gif" alt="">
 </div>
-<div class="row">
+<div class="row" *ngIf="recipesList.length">
     <div class="col-sm-12 col-md-6 col-lg-4 p-2" *ngFor="let recipe of recipesList">
         <app-recipe-card [recipe]="recipe"></app-recipe-card>
     </div>

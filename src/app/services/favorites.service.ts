@@ -1,10 +1,11 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { RecipeInterface } from '../interfaces/recipe-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
-  favoriteRecipes;
+  favoriteRecipes: RecipeInterface[];
 
   updateFavorites = new EventEmitter<any>;
 
@@ -12,11 +13,11 @@ export class FavoritesService {
     this.favoriteRecipes = JSON.parse(localStorage.getItem("favoriteRecipes"));
   }
 
-  getFavorites(){
+  getFavorites():RecipeInterface[]{
     return [...this.favoriteRecipes];
   }
 
-  isFavorite(recipeId): boolean{
+  isFavorite(recipeId:number): boolean{
     if(this.favoriteRecipes.some(recipe => recipe.id === recipeId)){
       return true;
     } else {
@@ -24,20 +25,22 @@ export class FavoritesService {
     }
   }
 
-  addToFavorites(recipe){
+  addToFavorites(recipe:RecipeInterface){
     this.favoriteRecipes.push(recipe);
   }
 
-  removeFromFavorites(recipeId){
-    this.favoriteRecipes = this.favoriteRecipes.filter(recipe => +recipe.id !== +recipeId);
+  removeFromFavorites(recipeId : number){
+    this.favoriteRecipes = this.favoriteRecipes.filter(recipe => recipe.id !== recipeId);
     this.updateFavorites.emit([...this.favoriteRecipes])
   }
 
-  toggleFavorite(recipe){ 
-    if(this.isFavorite(recipe.id)){
+  toggleFavorite(recipe: RecipeInterface){ 
+    if(recipe.isFavorite){
       this.removeFromFavorites(recipe.id);
+      recipe.isFavorite = false;
     } else {
       this.addToFavorites(recipe);
+      recipe.isFavorite = true;
     }
 
     this.saveToLocalStorage();
