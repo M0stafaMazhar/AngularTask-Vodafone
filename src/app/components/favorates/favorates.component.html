@@ -7,7 +7,12 @@
     </div>
 </div>
 <div class="row" *ngIf="displayList">
-    <div class="col-xs-12 col-sm-6 col-lg-4 p-2" *ngFor="let recipe of displayList">
+    <div class="col-xs-12 col-sm-6 col-lg-4 p-2" *ngFor="let recipe of displayList | paginate: { itemsPerPage: 6, currentPage: pageNum }">
         <app-recipe-card [recipe]="recipe"></app-recipe-card>
+    </div>
+    <div class="col-12">
+        <div class="text-center">
+            <pagination-controls class="text-danger custom-pagination" (pageChange)="pageNum = $event"></pagination-controls>
+        </div>
     </div>
 </div>

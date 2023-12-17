@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { FavoratesComponent } from './components/favorates/favorates.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SanitizeHTMLPipe } from './pipes/sanitize-html.pipe';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeDetailsComponent,
     FavoratesComponent,
     HeaderComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SanitizeHTMLPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgxPaginationModule,
     HttpClientModule
   ],
   providers: [],

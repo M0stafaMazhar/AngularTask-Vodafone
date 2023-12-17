@@ -9,6 +9,8 @@ import { SearchService } from '../../services/search.service';
   styleUrl: './favorates.component.css'
 })
 export class FavoratesComponent implements OnInit{
+  pageNum:number = 1
+
   favoriteRecipesList: RecipeInterface[];
   displayList: RecipeInterface[];
 

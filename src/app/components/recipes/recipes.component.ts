@@ -9,6 +9,8 @@ import { SearchService } from '../../services/search.service';
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent implements OnInit{
+ pageNum:number = 1;
+
  recipesList: RecipeInterface[];
  displayList: RecipeInterface[] =[];
  loadingFlag = false;

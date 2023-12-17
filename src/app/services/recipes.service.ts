@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { FavoritesService } from './favorites.service';
@@ -9,8 +9,12 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class RecipesService {
-  apiUrl = "https://api.spoonacular.com/recipes/random?number=12&apiKey=3926487ae16b4b0bba017bef833eaea4&includeNutrition=false";
-  
+  apiUrl = "https://api.spoonacular.com/recipes";
+
+  numOfRecipes: string = "36";
+  apiKey:string = "dbf9b764d8b144b89e2771089b8112af";
+  includeNutrition:string = "false";
+
   recipesList:RecipeInterface[];
   
   constructor(private http: HttpClient , private favoritesService: FavoritesService) { 
@@ -18,7 +22,7 @@ export class RecipesService {
   }
 
   getRecipesData():Observable<RecipeInterface[]>{
-      return this.http.get<{recipes}>(this.apiUrl).pipe(
+      return this.http.get<{recipes}>(`${this.apiUrl}/random?number=${this.numOfRecipes}&apiKey=${this.apiKey}&includeNutretion=${this.includeNutrition}`).pipe(
         map(
           ({recipes}) => {
             this.recipesList = recipes.map((recipe)=> this.filterResponse(recipe));
@@ -29,18 +33,9 @@ export class RecipesService {
   }
 
   getRecipeDetails(recipeId: number): Observable<RecipeInterface>{
-    return this.http.get<any>(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=3926487ae16b4b0bba017bef833eaea4&includeNutrition=false`)
+    return this.http.get<any>(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=dbf9b764d8b144b89e2771089b8112af&includeNutrition=false`)
     .pipe(map((recipe)=> this.filterResponse(recipe)))
   }
-
-
-  // getRecipeDetails(recipeId: number):RecipeInterface{
-  //   return this.recipesList.find(recipe => recipe.id === recipeId)
-  // }
-
-
-
-
 
 
   filterResponse(responseRecipe: any):RecipeInterface{  // Filter and transform the API response to match recipe model

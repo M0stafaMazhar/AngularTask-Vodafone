@@ -1,10 +1,10 @@
 <div class="row justify-content-center m-5" *ngIf="!loadingFlag && errorFlag">
     <div class="alert alert-danger col-sm-12 col-lg-4 text-center">
         <h5>Ops an Error ocured, Please try Again later.</h5>
-        <button class="btn btn-outline-danger">Home Page</button>
+        <button routerLink="/recipes" class="btn btn-outline-danger">Home Page</button>
     </div>
 </div>
-<div class="text-center" *ngIf="!loadingFlag && !errorFlag">
+<div class="text-center" *ngIf="loadingFlag && !errorFlag">
     <img src="https://i.pinimg.com/originals/ee/1d/08/ee1d081c5bdf966b058c1a6588e73e8a.gif" alt="Loading...">
 </div>
 <div class="row p-2" *ngIf="recipe">
@@ -12,7 +12,10 @@
         <div class="row">
             <div class="col-sm-12 col-lg-4 p-2">
                 <div class="col-12  position-relative">
-                    <button class="btn rounded-circle btn-outline-danger position-absolute top-0 end-0 m-2 shadow">
+                    <button 
+                    (click)="toggleFavorite()"
+                    [ngClass]="{'btn-danger text-light' : recipe.isFavorite}" 
+                    class="btn rounded-circle btn-outline-danger top-0 end-0 m-2 shadow position-absolute">
                         <i class="bi bi-star-fill"></i>
                     </button>
                     <img src={{recipe.image}} alt="{{recipe.title}}" class="img-fluid rounded-0">
@@ -20,16 +23,16 @@
             </div>
             <div class="card-body col-sm-12 col-lg-8">
                     <h5 class="card-title text-danger">{{recipe.title}}</h5>
-                <p class="card-text" [innerHTML]="recipe.description"></p>
+                <p class="card-text" [innerHTML]="recipe.description | sanitizeHTML"></p>
                 <h6>Ingredients:</h6>
                 <span class="badge text-bg-danger m-1" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}}</span>
             </div>
-            <hr class="hr hr-blurry" />
+            <hr>
             <div class="card-body">
                 <h5 class="card-title text-danger">
                     Instructions:
                 </h5>
-                <div [innerHTML]="recipe.instructions"></div>
+                <div [innerHTML]="recipe.instructions | sanitizeHTML"></div>
             </div>
         </div>
     </div>
