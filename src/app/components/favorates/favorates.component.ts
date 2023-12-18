@@ -18,15 +18,15 @@ export class FavoratesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.favoriteRecipesList = this.favoritesService.getFavorites(); 
+    this.favoriteRecipesList = this.favoritesService.getFavorites();  //getting favorites from local storage and display a copy of it to keep the original list for searching features
     this.displayList = [...this.favoriteRecipesList];
 
-    this.favoritesService.updateFavorites.subscribe((updatedList) => {
+    this.favoritesService.updateFavorites.subscribe((updatedList) => { //listn for recipe removing to update the UI
       this.favoriteRecipesList = updatedList;     
-      this.displayList = [...this.favoriteRecipesList];
+      this.displayList = [...this.favoriteRecipesList];                     //also display a copy and keep the originalfor searching
     })
 
-    this.searchService.searchEvent.subscribe(searchQuery => {
+    this.searchService.searchEvent.subscribe(searchQuery => {   //listn for search query from the navbar and use it to filter diplayed list
       this.displayList = this.favoriteRecipesList.filter(recipe => recipe.title.toLowerCase().includes(searchQuery))
     })
     

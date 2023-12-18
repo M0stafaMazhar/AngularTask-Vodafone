@@ -12,6 +12,6 @@ export class HeaderComponent {
 
   searchQuery: string;
   onSearch(){
-    this.searchService.searchEvent.next(this.searchQuery.toLowerCase())  
+    this.searchService.searchEvent.next(this.searchQuery.toLowerCase())  //emit subject with search query that can be used in all pages of the app
   }
 }

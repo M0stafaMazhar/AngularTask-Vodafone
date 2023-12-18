@@ -3,6 +3,7 @@ import { RecipeInterface } from '../../interfaces/recipe-interface';
 import { ActivatedRoute, Params} from '@angular/router';
 import { RecipesService } from '../../services/recipes.service';
 import { FavoritesService } from '../../services/favorites.service';
+import { FavoratesFirebaseServiceService } from '../../services/favorates-firebase.service.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -14,7 +15,8 @@ export class RecipeDetailsComponent {
   loadingFlag:boolean = false;
   errorFlag:boolean = false;
 
-  constructor(private route: ActivatedRoute , private recipesService: RecipesService , private favoritesService: FavoritesService){
+  constructor(private route: ActivatedRoute , private recipesService: RecipesService , 
+    private favoritesService: FavoritesService , private firestoreFav: FavoratesFirebaseServiceService){
   }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class RecipeDetailsComponent {
   }
 
   toggleFavorite(){
+    this.firestoreFav.toggleFavorite({...this.recipe}) //usisg the same technique mentioned in the recipe-card component
     this.favoritesService.toggleFavorite(this.recipe)
   }
 

@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { FavoritesService } from './favorites.service';
 import { RecipeInterface } from '../interfaces/recipe-interface';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environments';
+import { ResponseFilterServiceService } from './response-filter.service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,47 +13,31 @@ export class RecipesService {
   apiUrl = "https://api.spoonacular.com/recipes";
 
   numOfRecipes: string = "36";
+
   apiKey:string = environment.spoonacularApiKey;
-  includeNutrition:string = "false";
 
   recipesList:RecipeInterface[];
   
-  constructor(private http: HttpClient , private favoritesService: FavoritesService) { 
+  constructor(private http: HttpClient ,  private filterResponseService: ResponseFilterServiceService) { 
   
   }
 
-  getRecipesData():Observable<RecipeInterface[]>{
-      return this.http.get<{recipes}>(`${this.apiUrl}/random?number=${this.numOfRecipes}&apiKey=${this.apiKey}&includeNutretion=${this.includeNutrition}`).pipe(
+  getRecipesData():Observable<RecipeInterface[]>{ //send a request to get random recipes
+      return this.http.get<{recipes}>(`${this.apiUrl}/random?number=${this.numOfRecipes}&includeNutretion=false&apiKey=${this.apiKey}`).pipe(
         map(
           ({recipes}) => {
-            this.recipesList = recipes.map((recipe)=> this.filterResponse(recipe));
+            this.recipesList = recipes.map((recipe)=> this.filterResponseService.filterResponse(recipe));
             return this.recipesList;
           }
           )
-        )     
+        )     //return an observable containing the filtered api response(list of recipes)
   }
 
-  getRecipeDetails(recipeId: number): Observable<RecipeInterface>{
-    return this.http.get<any>(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${this.apiKey}&includeNutrition=false`)
-    .pipe(map((recipe)=> this.filterResponse(recipe)))
+  getRecipeDetails(recipeId: number): Observable<RecipeInterface>{ //request recipe details
+    return this.http.get<any>(`${this.apiUrl}/${recipeId}/information?includeNutrition=false&apiKey=${this.apiKey}`)
+    .pipe(map((recipe)=> this.filterResponseService.filterResponse(recipe)))
   }
 
-
-  filterResponse(responseRecipe: any):RecipeInterface{  // Filter and transform the API response to match recipe model
-    return {
-      id: responseRecipe.id,
-      title: responseRecipe.title,
-      description: responseRecipe.summary,
-      likes: responseRecipe.aggregateLikes,
-      readyTime: responseRecipe.readyInMinutes,
-      pricePerServing: responseRecipe.pricePerServing,
-      instructions: responseRecipe.instructions,
-      image: responseRecipe.image,
-      ingredients: responseRecipe.extendedIngredients.map((ingredient)=> ({name: ingredient.nameClean})),
-      isFavorite: this.favoritesService.isFavorite(responseRecipe.id)  //Add a favorite flag to the recipe
-    }
-    
-  }
 
 
 

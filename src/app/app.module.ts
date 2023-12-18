@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SanitizeHTMLPipe } from './pipes/sanitize-html.pipe';
 import { LoadingSectionComponent } from './components/loading-section/loading-section.component';
 import { ErrorSectionComponent } from './components/error-section/error-section.component';
+import { FirebaseFavoritesComponent } from './components/firebase-favorites/firebase-favorites.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ErrorSectionComponent } from './components/error-section/error-section.
     NotFoundComponent,
     SanitizeHTMLPipe,
     LoadingSectionComponent,
-    ErrorSectionComponent
+    ErrorSectionComponent,
+    FirebaseFavoritesComponent
   ],
   imports: [
     BrowserModule,

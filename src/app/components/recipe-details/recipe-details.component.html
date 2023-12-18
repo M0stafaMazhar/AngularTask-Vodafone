@@ -1,9 +1,4 @@
-<div class="row justify-content-center m-5" *ngIf="!loadingFlag && errorFlag">
-    <div class="alert alert-danger col-sm-12 col-lg-4 text-center">
-        <h5>Ops an Error ocured, Please try Again later.</h5>
-        <button routerLink="/recipes" class="btn btn-outline-danger">Home Page</button>
-    </div>
-</div>
+<app-error-section *ngIf="!loadingFlag && errorFlag"></app-error-section>
 
 <app-loading-section *ngIf="loadingFlag && !errorFlag"></app-loading-section>
 

@@ -4,12 +4,14 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { FavoratesComponent } from './components/favorates/favorates.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { FirebaseFavoritesComponent } from './components/firebase-favorites/firebase-favorites.component';
 
 const routes: Routes = [
   {path: 'recipes' , title:"Recipes",component:RecipesComponent},
   {path: 'recipe/:id', title:"Recipe Details",component:RecipeDetailsComponent},
   {path: '', pathMatch:"full" ,redirectTo:"recipes"},
   {path: 'favorites', title:"Favorite Recipes",component:FavoratesComponent},
+  {path: 'firebase-favorites', title:"Firebase-Favorites", component:FirebaseFavoritesComponent},
   {path: '**', component:NotFoundComponent}
 ];
 
