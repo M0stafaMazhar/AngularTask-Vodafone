@@ -13,6 +13,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SanitizeHTMLPipe } from './pipes/sanitize-html.pipe';
+import { LoadingSectionComponent } from './components/loading-section/loading-section.component';
+import { ErrorSectionComponent } from './components/error-section/error-section.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SanitizeHTMLPipe } from './pipes/sanitize-html.pipe';
     FavoratesComponent,
     HeaderComponent,
     NotFoundComponent,
-    SanitizeHTMLPipe
+    SanitizeHTMLPipe,
+    LoadingSectionComponent,
+    ErrorSectionComponent
   ],
   imports: [
     BrowserModule,

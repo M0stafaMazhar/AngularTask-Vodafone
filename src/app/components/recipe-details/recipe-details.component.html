@@ -4,9 +4,9 @@
         <button routerLink="/recipes" class="btn btn-outline-danger">Home Page</button>
     </div>
 </div>
-<div class="text-center" *ngIf="loadingFlag && !errorFlag">
-    <img src="https://i.pinimg.com/originals/ee/1d/08/ee1d081c5bdf966b058c1a6588e73e8a.gif" alt="Loading...">
-</div>
+
+<app-loading-section *ngIf="loadingFlag && !errorFlag"></app-loading-section>
+
 <div class="row p-2" *ngIf="recipe">
     <div class="card col-sm-12 rounded-0">
         <div class="row">

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { FavoritesService } from './favorites.service';
 import { RecipeInterface } from '../interfaces/recipe-interface';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class RecipesService {
   apiUrl = "https://api.spoonacular.com/recipes";
 
   numOfRecipes: string = "36";
-  apiKey:string = "dbf9b764d8b144b89e2771089b8112af";
+  apiKey:string = environment.spoonacularApiKey;
   includeNutrition:string = "false";
 
   recipesList:RecipeInterface[];
@@ -33,7 +34,7 @@ export class RecipesService {
   }
 
   getRecipeDetails(recipeId: number): Observable<RecipeInterface>{
-    return this.http.get<any>(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=dbf9b764d8b144b89e2771089b8112af&includeNutrition=false`)
+    return this.http.get<any>(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${this.apiKey}&includeNutrition=false`)
     .pipe(map((recipe)=> this.filterResponse(recipe)))
   }
 
