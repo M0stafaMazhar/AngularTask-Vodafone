@@ -1,5 +1,5 @@
 export const environment = {
-    spoonacularApiKey: "dbf9b764d8b144b89e2771089b8112af",
+    spoonacularApiKey: "8e2e5eb38b784eee986f8b8f3996c01f",
     firebaseConfig :{
     apiKey: "AIzaSyDA6iSlhy_yf06FuCjFNDv84STKNgfUgdA",
     authDomain: "favoriterecipes-cb2fe.firebaseapp.com",

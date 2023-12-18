@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Recipe Finder is a single-page application (SPA) developed with Angular 10+. It integrates with the Spoonacular recipe API to provide users with a dynamic and interactive platform for discovering, searching, and managing recipes.
+The Recipe Finder is a single-page application (SPA) developed with Angular. It integrates with the Spoonacular recipe API to provide users with a dynamic and interactive platform for discovering, searching, and managing recipes.
 
 ## Components
 
@@ -70,11 +70,9 @@ The Recipe Finder is a single-page application (SPA) developed with Angular 10+.
 
 - **Description:** The environment file contains the API key and Firestore configuration data. You can replace this data with your own.
 
-## Styling
+## Notes on Firestore Implementation
 
-The current styling of the application is designed for functionality rather than aesthetics. If you find the styling lacking, you are encouraged to enhance it according to your preferences. Consider incorporating a CSS framework like Bootstrap or Tailwind CSS for a more polished appearance.
-
-## Notes
+I opted to incorporate two methods for managing favorites in this project—local storage and Firestore. This choice was driven by my first-time experience with Firestore. While the functionality works seamlessly, I acknowledge that there might be more optimal ways to implement Firestore. The inclusion of local storage offers a fallback and ensures compatibility.
 
 - **Favorites Pages:** Two favorites pages have been implemented, with one using local storage and the other Firestore. Both methods are included to make the two ways work together. When toggling favorites, the following approach is taken to ensure compatibility:
   ```typescript
@@ -103,18 +101,7 @@ The current styling of the application is designed for functionality rather than
 
 ## Screenshots
 
-- Include screenshots or a link to a demo showcasing the application's appearance and functionality.
-
-## Known Issues
-
-- Mention any known issues or limitations in the current implementation.
-
-## Contributing
-
-- Provide guidelines on how others can
-
- contribute to the project.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+- ![Home Page With search](screenShots/Screenshot%202023-12-18%20201419.png)
+- ![Home Page phone view](screenShots/Screenshot%202023-12-18%20201556.png)
+- ![Favorates](screenShots/Screenshot%202023-12-18%20201115.png)
+- ![Favorates Page With search](screenShots/Screenshot%202023-12-18%20201222.png)
